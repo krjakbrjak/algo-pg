@@ -1,0 +1,7 @@
+*.sw[o,p]
+*.pyc
+
+.venv
+.idea
+.vscode
+
