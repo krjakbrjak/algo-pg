@@ -1,4 +1,4 @@
-from algorithm.graph.dfs import DFS, graph_components
+from algorithm.graph.dfs import DFS, graph_components, TopSort
 from algorithm.graph.node import AdjacencyList, Graph, Node
 
 
@@ -70,3 +70,29 @@ def test_graph_components():
     graph.connect(a, d)
 
     assert len(list(graph_components(graph))) == 1
+
+
+def test_top_sort():
+    graph = Graph()
+
+    n0 = Node(label=0)
+    n1 = Node(label=1)
+    n2 = Node(label=2)
+    n3 = Node(label=3)
+    n4 = Node(label=4)
+    n5 = Node(label=5)
+    n6 = Node(label=6)
+    n7 = Node(label=7)
+
+    graph.connect(n0, n1)
+    graph.connect(n0, n2)
+    graph.connect(n0, n3)
+    graph.connect(n1, n3)
+    graph.connect(n1, n6)
+    graph.connect(n2, n4)
+    graph.connect(n4, n6)
+
+    topsort = TopSort(graph=graph)
+    for i in graph.nodes:
+        for j in topsort.run_recursion(i):
+            print(j)

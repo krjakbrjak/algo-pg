@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Iterator, List, Tuple
+from typing import Iterator, List, Tuple, Dict
 
 from algorithm.graph.node import AdjacencyList, Graph, Node
 
@@ -42,3 +42,18 @@ def graph_components(graph: Graph) -> Iterator[List[Node]]:
             components.append(i)
         if components:
             yield components
+
+
+@dataclass
+class TopSort:
+    graph: Graph
+    visited: Tuple[int, ...] = tuple()
+
+    def run_recursion(self, node: Node) -> Iterator[Node]:
+        if node.label not in self.visited:
+            self.visited += (node.label,)
+            for neighbour in self.graph.adjacency_list.connections.get(
+                    node.label, tuple()
+            ):
+                yield from self.run_recursion(neighbour.node)
+            yield node
