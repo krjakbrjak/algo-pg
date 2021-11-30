@@ -24,7 +24,7 @@ class Connection:
 
 @dataclass
 class AdjacencyList:
-    connections: Dict[int, List[Connection]] = field(default_factory=lambda: dict())
+    connections: Dict[int, List[Connection]] = field(default_factory=dict)
 
     def connect(self, node: Node, to: Node, weight: Optional[int] = 1):
         self.connections.update(
@@ -37,8 +37,8 @@ class AdjacencyList:
 
 @dataclass
 class Graph:
-    nodes: Set[Node] = field(default_factory=lambda: set())
-    adjacency_list: AdjacencyList = field(default_factory=lambda: AdjacencyList())
+    nodes: Set[Node] = field(default_factory=set)
+    adjacency_list: AdjacencyList = field(default_factory=AdjacencyList)
 
     def connect(self, node: Node, to: Node, weight: Optional[int] = 1):
         self.adjacency_list.connect(node, to, weight)

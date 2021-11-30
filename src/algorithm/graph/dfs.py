@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Iterator, List, Tuple, Dict
 
 from algorithm.graph.node import AdjacencyList, Graph, Node
@@ -6,8 +6,8 @@ from algorithm.graph.node import AdjacencyList, Graph, Node
 
 @dataclass
 class DFS:
-    graph: Graph
-    visited: Tuple[int, ...] = tuple()
+    graph: Graph = field(default_factory=Graph)
+    visited: Tuple[int, ...] = field(default_factory=tuple)
 
     def run_recursion(self, node: Node) -> Iterator[Node]:
         if node.label not in self.visited:
@@ -46,8 +46,8 @@ def graph_components(graph: Graph) -> Iterator[List[Node]]:
 
 @dataclass
 class TopSort:
-    graph: Graph
-    visited: Tuple[int, ...] = tuple()
+    graph: Graph = field(default_factory=Graph)
+    visited: Tuple[int, ...] = field(default_factory=tuple)
 
     def run_recursion(self, node: Node) -> Iterator[Node]:
         if node.label not in self.visited:

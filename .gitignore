@@ -1,7 +1,7 @@
 *.sw[o,p]
 *.pyc
 
+venv
 .venv
 .idea
 .vscode
-

@@ -7,9 +7,9 @@ from algorithm.graph.node import Graph, Node
 
 @dataclass
 class BFS:
-    graph: Graph
-    visited: Tuple[int, ...] = tuple()
-    queue: deque = field(default_factory=lambda: deque())
+    graph: Graph = field(default_factory=Graph)
+    visited: Tuple[int, ...] = field(default_factory=tuple)
+    queue: deque = field(default_factory=deque)
 
     def run_stack(self, node: Node) -> Iterator[Node]:
         nodes: deque = deque()
